@@ -43,7 +43,7 @@ public class KafkaConfig {
     public ConsumerFactory<Long, MessageEvent> consumerFactory() {
         Map<String, Object> config = new HashMap<>();
         config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_SERVER);
-        config.put(ConsumerConfig.GROUP_ID_CONFIG, "${spring.application.name}");
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "kafka2kafka");
         config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, LongSerializer.class);
         config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JacksonJsonSerializer.class);
         return new DefaultKafkaConsumerFactory<>(config, new LongDeserializer(),
