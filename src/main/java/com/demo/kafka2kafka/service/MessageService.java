@@ -19,7 +19,7 @@ public class MessageService {
 
     public MessageEvent add(MessageDto message) {
         //Add to external message queue
-        log.info("Message received from. Adding message to external MQ.");
+        log.info("Message received from API. Adding message to external MQ.");
         MessageEvent messageEvent = new MessageEvent();
         messageEvent.setMessage(message.getMessage());
         kafkaTemplate.send("external-mq-topic", messageEvent);

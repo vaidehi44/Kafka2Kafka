@@ -1,6 +1,7 @@
 package com.demo.kafka2kafka.config;
 
 import com.demo.kafka2kafka.event.MessageEvent;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.LongDeserializer;
@@ -20,13 +21,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Configuration
+@Slf4j
 public class KafkaConfig {
 
     @Value("${spring.kafka.bootstrap-servers}")
-    private static String KAFKA_SERVER;
+    private String KAFKA_SERVER;
 
     @Bean
     public ProducerFactory<Long, MessageEvent> producerFactory() {
+        log.info("Kafka: ", KAFKA_SERVER);
         Map<String, Object> config = new HashMap<>();
         config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, KAFKA_SERVER);
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, LongSerializer.class);
