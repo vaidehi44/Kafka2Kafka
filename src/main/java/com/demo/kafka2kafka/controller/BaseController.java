@@ -13,6 +13,11 @@ public class BaseController {
 
     private final MessageService messageService;
 
+    @GetMapping("/home")
+    public ResponseEntity<String> home() {
+        return ResponseEntity.ok("Hello World!");
+    }
+
     @PostMapping("/add")
     public ResponseEntity<String> add(@RequestBody MessageDto message) {
         MessageEvent event = messageService.add(message);
